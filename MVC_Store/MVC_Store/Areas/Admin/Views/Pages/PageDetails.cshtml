@@ -1,0 +1,42 @@
+﻿@model MVC_Store.Models.ViewModels.Pages.PageVM
+
+@{
+    ViewBag.Title = "Page Details";
+}
+
+<h2>PageDetails</h2>
+
+<div>
+    <h4>PageVM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditPage", new { id = Model.Id }) |
+    @Html.ActionLink("Back to Pages", "Index")
+</p>

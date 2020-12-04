@@ -16,7 +16,7 @@ namespace MVC_Store.Areas.Admin.Controllers
 
             using (Db db = new Db())
             {
-                pageList = db.Pages.ToArray().OrderBy(x=>x.Sorting).Select(x=> new PageVM(x)).ToList();
+                pageList = db.Pages.ToArray().OrderBy(x => x.Sorting).Select(x => new PageVM(x)).ToList();
             }
 
 
@@ -37,7 +37,7 @@ namespace MVC_Store.Areas.Admin.Controllers
         {
             //проверка модели на валидность
             if (!ModelState.IsValid)
-            { 
+            {
                 return View(model);
             }
 
@@ -62,7 +62,7 @@ namespace MVC_Store.Areas.Admin.Controllers
                     ModelState.AddModelError("", "That title allready exist");
                     return View(model);
                 }
-                else if (db.Pages.Any(x =>x.Slag == slag))
+                else if (db.Pages.Any(x => x.Slag == slag))
                 {
                     ModelState.AddModelError("", "That slag allready exist");
                     return View(model);
@@ -84,5 +84,106 @@ namespace MVC_Store.Areas.Admin.Controllers
             //Переадрисовываем на метод Index
             return RedirectToAction("Index");
         }
+
+        // Get: Admin/Pages/EditPage
+        [HttpGet]
+        public ActionResult EditPage(int id)
+        {
+            //Объявим модель
+            PageVM pageVM;
+
+            using (Db db = new Db())
+            {
+                //Получаем страницу 
+                PagesDTO pagesDTO = db.Pages.Find(id);
+                //Проверяем доступна ли страница 
+                if (pagesDTO == null)
+                    return Content("Page not found");
+                //Инициализируем модель данными
+                pageVM = new PageVM(pagesDTO);
+            }
+            //Возвращаем представление с моделью
+            return View(pageVM);
+        }
+
+        // POST: Admin/Pages/EditPage
+        [HttpPost]
+        public ActionResult EditPage(PageVM model)
+        {
+            //проверка модели на валидность
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            using (Db db = new Db())
+            {
+                //объявляем переменную для краткого описания (slag)
+                string slag;
+                int id = model.Id;
+
+                //Получаем класс PageDTO
+                PagesDTO pagesDTO = db.Pages.Find(id);
+
+                if (pagesDTO == null)
+                    return Content("Page not found");
+
+                //Присвоем заголовок модели
+                pagesDTO.Title = model.Title.ToUpper();
+
+                //Проверям есть ли краткое описание если нет то добавляем его
+                if (string.IsNullOrWhiteSpace(model.Slag))
+                    slag = model.Title.Replace(" ", "-").ToLower();
+                else
+                    slag = model.Slag.Replace(" ", "-").ToLower();
+
+                //Проверить заголовок и краткое опиcание на уникальность
+                if (db.Pages.Where(x=>x.Id != id).Any(x => x.Title == model.Title))
+                {
+                    ModelState.AddModelError("", "That title allready exist");
+                    return View(model);
+                }
+                else if (db.Pages.Where(x => x.Id != id).Any(x => x.Slag == slag))
+                {
+                    ModelState.AddModelError("", "That slag allready exist");
+                    return View(model);
+                }
+                //Присваиваем оставшиеся значения модели
+                pagesDTO.Slag = slag;
+                pagesDTO.HasSidebar = model.HasSidebar;
+                pagesDTO.Body = model.Body;
+
+                //Сохраняем в БД
+                db.SaveChanges();
+            }
+
+            //Передаем сообщение через ТемпДата
+            TempData["SM"] = "You have editing Page";
+
+            //Переадрисовываем на метод Index
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult PageDetails(int id)
+        {
+            //Объявим модель
+            PageVM pageVM;
+
+            using (Db db = new Db())
+            {
+                //Получаем страницу 
+                PagesDTO pagesDTO = db.Pages.Find(id);
+                //Проверяем доступна ли страница 
+                if (pagesDTO == null)
+                    return Content("Page not found");
+                //Инициализируем модель данными
+                pageVM = new PageVM(pagesDTO);
+            }
+            //Возвращаем представление с моделью
+            return View(pageVM);
+        }
     }
+
+
 }

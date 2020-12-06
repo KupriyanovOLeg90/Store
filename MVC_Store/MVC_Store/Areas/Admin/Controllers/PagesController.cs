@@ -183,7 +183,49 @@ namespace MVC_Store.Areas.Admin.Controllers
             //Возвращаем представление с моделью
             return View(pageVM);
         }
+
+        // Get: Admin/Pages/EditPage
+        public ActionResult DeletePage(int id)
+        {
+            using (Db db = new Db())
+            {
+                //Получаем страницу 
+                PagesDTO pagesDTO = db.Pages.Find(id);
+                //Проверяем доступна ли страница 
+                if (pagesDTO == null)
+                    return Content("Page not found");
+
+                db.Pages.Remove(pagesDTO);
+                db.SaveChanges();
+            }
+
+            //Передаем сообщение через ТемпДата
+            TempData["SM"] = "You have delete Page";
+
+            //Переадрисовываем на метод Index
+            return RedirectToAction("Index");
+        }
+
+        //Метод сортировки
+        // Post: Admin/Pages/EditPage
+        [HttpPost]
+        public void ReorderPages(int[] id)
+        {
+            using (Db db = new Db())
+            {            
+                int count = 0;
+
+                //Получаем страницу 
+                PagesDTO pagesDTO;
+
+                foreach (var pageId in id) 
+                {
+                    pagesDTO = db.Pages.Find(pageId);
+                    pagesDTO.Sorting = count++;
+
+                    db.SaveChanges();
+                }
+            }
+        }
     }
-
-
 }

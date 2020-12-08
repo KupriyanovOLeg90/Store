@@ -9,16 +9,17 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        @Html.ActionLink("Dashboard", "Index", "Dashboard", "", new { @class = "navbar-brand" })
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">  @Html.ActionLink("Dashboard", "Index", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })</a>
+                    @Html.ActionLink("Pages", "Index", "Pages", "", new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">  @Html.ActionLink("Link", "Link", "", new { area = "" }, new { @class = "navbar-brand" })</a>
+                    @Html.ActionLink("Sidebars", "EditSidebar", "Pages", "", new { @class = "nav-link" })
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -32,13 +33,14 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Store</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
 
-    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryui") 
+    @Scripts.Render("~/bundles/ckeditor")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

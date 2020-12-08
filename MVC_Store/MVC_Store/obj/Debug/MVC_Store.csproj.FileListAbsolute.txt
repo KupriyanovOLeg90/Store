@@ -49,7 +49,6 @@ F:\Progects\Store\MVC_Store\MVC_Store\bin\System.Web.WebPages.Razor.xml
 F:\Progects\Store\MVC_Store\MVC_Store\bin\Newtonsoft.Json.xml
 F:\Progects\Store\MVC_Store\MVC_Store\bin\Antlr3.Runtime.pdb
 F:\Progects\Store\MVC_Store\MVC_Store\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-F:\Progects\Store\MVC_Store\MVC_Store\obj\Debug\MVC_Store.csprojAssemblyReference.cache
 F:\Progects\Store\MVC_Store\MVC_Store\obj\Debug\MVC_Store.csproj.CoreCompileInputs.cache
 F:\Progects\Store\MVC_Store\MVC_Store\obj\Debug\MVC_Store.csproj.CopyComplete
 F:\Progects\Store\MVC_Store\MVC_Store\obj\Debug\MVC_Store.dll
@@ -62,3 +61,4 @@ F:\Progects\Store\MVC_Store\MVC_Store\bin\EntityFramework.dll
 F:\Progects\Store\MVC_Store\MVC_Store\bin\EntityFramework.SqlServer.dll
 F:\Progects\Store\MVC_Store\MVC_Store\bin\EntityFramework.xml
 F:\Progects\Store\MVC_Store\MVC_Store\bin\EntityFramework.SqlServer.xml
+F:\Progects\Store\MVC_Store\MVC_Store\obj\Debug\MVC_Store.csprojAssemblyReference.cache

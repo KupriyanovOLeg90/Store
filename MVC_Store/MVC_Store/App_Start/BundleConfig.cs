@@ -33,6 +33,10 @@ namespace MVC_Store
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Scripts/jquery-ui.js*"));
+
+            //подключил библиотеку CKEditor (редактор)
+            bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
+                        "~/Scripts/ckeditor/ckeditor.js*"));
         }
     }
 }

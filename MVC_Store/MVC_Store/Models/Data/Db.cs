@@ -6,5 +6,7 @@ namespace MVC_Store.Models.Data
     {
         public DbSet<PagesDTO> Pages { get; set; }
 
+        public DbSet<SideBarDTO> SideBars { get; set; }
+
     }
 }

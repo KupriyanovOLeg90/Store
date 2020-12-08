@@ -227,5 +227,63 @@ namespace MVC_Store.Areas.Admin.Controllers
                 }
             }
         }
+
+
+        //Метод сортировки
+        // Get: Admin/Pages/EditSidebar
+        [HttpGet]
+        public ActionResult EditSidebar() 
+        {
+            //Объявим модель
+            SidebarVM sidebarVM;
+
+            using (Db db = new Db())
+            {
+                //Получаем даннфи 
+                SideBarDTO sidebarDTO = db.SideBars.Find(1); //TODO убрать 1 
+                //Проверяем доступны ли данные 
+                if (sidebarDTO == null)
+                    return Content("Page not found");
+                //Инициализируем модель данными
+                sidebarVM = new SidebarVM(sidebarDTO);
+            }
+
+            //Возвращаем представление с моделью
+            return View(sidebarVM);
+        }
+
+
+        // POST: Admin/Pages/EditSidebar
+        [HttpPost]
+        public ActionResult EditSidebar(SidebarVM model)
+        {
+            //проверка модели на валидность
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            using (Db db = new Db())
+            {
+                int id = model.Id;
+                //Получаем класс PageDTO
+                SideBarDTO sideBarDTO = db.SideBars.Find(id);
+
+                if (sideBarDTO == null)
+                    return Content("Page not found");
+
+                //Присваиваем значения модели
+                sideBarDTO.Body = model.Body;
+
+                //Сохраняем в БД
+                db.SaveChanges();
+            }
+
+            //Передаем сообщение через ТемпДата
+            TempData["SM"] = "You have editing Sidebar";
+
+            //Переадрисовываем на метод EditSidebar
+            return RedirectToAction("EditSidebar");
+        }
     }
 }

@@ -8,5 +8,8 @@ namespace MVC_Store.Models.Data
 
         public DbSet<SideBarDTO> SideBars { get; set; }
 
+        public DbSet<CategoryDTO> Categories { get; set; }
+
+        public DbSet<ProductDTO> Products { get; set; }
     }
 }

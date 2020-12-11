@@ -33,9 +33,9 @@
     {
         <tr id="id_@item.Id" class="@item.Slag">
             <td>
-                @if (item.Slag != "home") 
-                { 
-                    <span class="ui-icon ui-icon-arrow-2-n-s"></span>
+                @if (item.Slag != "home")
+                {
+                    <span class="ui-icon ui-icon-arrowthick-1-n"></span>
                 }
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -58,27 +58,5 @@
 
 @section Scripts
 {
-    <script>
-        $('a.delete').on('click',function () {
-            if (!confirm("Вы действительно хотите удалить?"))
-                return false;
-        });
-
-        //function ConfirmDelete() {
-        //    if (!confirm("Вы действительно хотите удалить?"))
-        //        return false;
-        //};
-
-        //Sorting script
-        $("table#pages tbody").sortable({
-            items: "tr:not(.home)",
-            placeholder: "ui-state-highlight",
-            update: function () {
-                var ids = $('table#pages tbody').sortable('serialize');
-                var url = "/Admin/Pages/ReorderPages";
-
-                $.post(url, ids, function (data) { })
-            }
-        });
-    </script>
+    <script src="~/Content/ShopJS/PagesIndexViewJS.js"></script>
 }

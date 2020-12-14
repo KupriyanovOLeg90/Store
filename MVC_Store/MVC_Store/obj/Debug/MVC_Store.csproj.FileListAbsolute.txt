@@ -65,3 +65,4 @@ F:\Progects\Store\MVC_Store\MVC_Store\bin\PagedList.dll
 F:\Progects\Store\MVC_Store\MVC_Store\bin\PagedList.Mvc.dll
 F:\Progects\Store\MVC_Store\MVC_Store\bin\PagedList.xml
 F:\Progects\Store\MVC_Store\MVC_Store\bin\PagedList.Mvc.xml
+F:\Progects\Store\MVC_Store\MVC_Store\obj\Debug\MVC_Store.csprojAssemblyReference.cache

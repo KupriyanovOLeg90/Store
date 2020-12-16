@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+<head wrapper>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - MVC Shop</title>
@@ -17,36 +17,41 @@
             <ul class="navbar-nav mr-auto">
                 @Html.Action("PagesMenuPartial", "Pages")
             </ul>
-            <ul class="navbar-nav ml-auto">
-                <li>
-                    <a class="nav-link" href="#">Shopping Cart</a>
-                </li>
-            </ul>
+            <span class="navbar-text">
+                @Html.Action("CartPartial", "Cart")
+            </span>
 
         </div>
     </nav>
-    <div class="container body-content">
-        <div class="row">
-            @if (ViewBag.Sidebar == "yes")
-            {
-                <div class="col">
-                    @RenderBody()
-                </div>
-                <div class="col-sm-12 col-md-3">
-                    @Html.Action("_SidebarPartial", "Pages");
-                </div>
-            }
-            else
-            {
-                <div class="col">
-                    @RenderBody()
-                </div>
-            }
+    <div class="container body-content wrapper"  >
+        <div class="row content" style="flex-wrap: inherit;">
+          
 
+            <div class="col col-sm-12 col-md-3 list-group">
+                @Html.Action("CategoryMenuPartial", "Shop");
+            </div>
+
+            <div>
+                @if (ViewBag.Sidebar == "yes")
+                {
+                    <div class="col">
+                        @RenderBody()
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        @Html.Action("SidebarPartial", "Pages");
+                    </div>
+                }
+                else
+                {
+                    <div class="col">
+                        @RenderBody()
+                    </div>
+                }
+            </div>
         </div>
 
         <hr />
-        <footer>
+        <footer class="footer">
             <p>&copy; @DateTime.Now.Year - Some shop</p>
         </footer>
 

@@ -28,8 +28,7 @@ namespace MVC_Store
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
-                      "~/Scripts/jquery-ui.js*"));
+                      "~/Content/Site.css"));
 
             //подключил библиотеку CKEditor (редактор)
             bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(

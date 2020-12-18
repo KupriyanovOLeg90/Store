@@ -16,6 +16,36 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 @Html.Action("PagesMenuPartial", "Pages")
+
+                @if (Request.IsAuthenticated)
+                {
+                    <li>
+                        @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "navbar-text", style = "text-decoration:none;" })
+                    </li>
+                }
+                else
+                {
+                    if (ViewBag.Title == "Login")
+                    {
+                        <li class="navbar-text">
+                            @Html.ActionLink("Login", "Login", "Account", null, new { @class = "active", style = "text-decoration:none;" })
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="navbar-text">
+                            @Html.ActionLink("Login", "Login", "Account", null, new { @class = "navbar-text", style = "text-decoration:none;" })
+                        </li>
+                    }
+
+                }
+
+                @if (Request.IsAuthenticated)
+                {
+                    <li>
+                        @Html.Action("UserNavPartial", "Account", new { aria = "" })
+                    </li>
+                }
             </ul>
             <span class="navbar-text">
                 @Html.Action("CartPartial", "Cart")
@@ -23,12 +53,12 @@
 
         </div>
     </nav>
-    <div class="container body-content wrapper"  >
+    <div class="container body-content wrapper">
         <div class="row content" style="flex-wrap: inherit;">
-          
+
 
             <div class="col col-sm-12 col-md-3 list-group">
-                @Html.Action("CategoryMenuPartial", "Shop");
+                @Html.Action("CategoryMenuPartial", "Shop")
             </div>
 
             <div>
@@ -38,7 +68,7 @@
                         @RenderBody()
                     </div>
                     <div class="col-sm-12 col-md-3">
-                        @Html.Action("SidebarPartial", "Pages");
+                        @Html.Action("SidebarPartial", "Pages")
                     </div>
                 }
                 else
